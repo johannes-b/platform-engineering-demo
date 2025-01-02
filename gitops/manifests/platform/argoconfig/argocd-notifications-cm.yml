@@ -11,6 +11,23 @@ data:
       value: Api-Token $dynatrace-token
     - name: Content-Type
       value: application/json
+  service.webhook.dynatrace-webhook: |
+    url: $dt-base-url
+    headers:
+    - name: "Authorization"
+      value: Api-Token $dt-access-token
+    - name: "Content-Type"
+      value: "application/json; charset=utf-8"
+  template.dynatrace-webhook-template: |
+    webhook:
+      dynatrace-webhook:
+        method: POST
+        path: /platform/ingest/custom/events.sdlc/argocd
+        body: |
+            {
+             "type":"DeploySuccess",
+             "app": {{toJson .app}}             
+            }
   template.app-sync-succeeded: |
     webhook:
       dynatrace:
@@ -143,6 +160,10 @@ data:
       send:
       - app-created
       when: "true"
+  trigger.dynatrace-webhook-trigger: |
+    - when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
+      oncePer: app.status.operationState.syncResult.revision
+      send: [dynatrace-webhook-template]
 #  trigger.on-deleted: |
 #    - description: Application is deleted.
 #      oncePer: app.metadata.name
