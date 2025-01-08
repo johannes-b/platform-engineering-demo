@@ -24,7 +24,7 @@ spec:
         dt.owner: "team01"
         app.kubernetes.io/name: userinterface
         app.kubernetes.io/part-of: "simplenodeservice-team01"
-        app.kubernetes.io/version: "1.0.2"
+        app.kubernetes.io/version: "1.0.1"
         dynatrace-release-stage: "preprod"
         backstage.io/component: "default.simplenodeservice-team01-preprod"
     spec:
