@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: rollouts-demo
-        image: grabnerandi/simplenodeservice:1.0.2
+        image: grabnerandi/simplenodeservice:1.0.1
         env:
         - name: DT_RELEASE_VERSION
           valueFrom:
