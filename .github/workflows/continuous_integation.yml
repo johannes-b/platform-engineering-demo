@@ -42,4 +42,4 @@ jobs:
     - uses: omnilogy-pl/set-status-of-commit@main
       with:
         token: ${{ github.token }}
-        artifacts: my-image-name:${{ steps.vars.outputs.sha_short }}
+        artifacts: grabnerandi/simplenodeservice:2.0.1
