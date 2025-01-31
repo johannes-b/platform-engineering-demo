@@ -26,7 +26,8 @@ data:
         body: |
             {
              "type":"DeploySuccess",
-             "app": {{toJson .app}}             
+             "app": {{toJson .app}},
+             "context: {{toJson .context}}
             }
   template.app-sync-succeeded: |
     webhook:
@@ -161,7 +162,8 @@ data:
       - app-created
       when: "true"
   trigger.dynatrace-webhook-trigger: |
-    - when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
+    - when: app.status.operationState != nil 
+# and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
       oncePer: app.status.operationState.syncResult.revision
       send: [dynatrace-webhook-template]
 #  trigger.on-deleted: |
