@@ -165,9 +165,10 @@ data:
       - app-created
       when: "true"
   trigger.dynatrace-webhook-trigger: |
-    - when: app.status.operationState.phase in ['Succeeded', 'Failed', 'Error', 'Running'] and app.status.health.status in ['Healthy', 'Degraded']
-#     oncePer: app.status.operationState.syncResult.revision
+    - when: app.status.operationState.phase in ['Succeeded', 'Failed', 'Error'] and app.status.health.status in ['Healthy', 'Degraded']
       send: [dynatrace-webhook-template]
+    - when: app.status.operationState.phase == 'Running' and app.status.health.status in ['Healthy', 'Degraded']
+      send: [dynatrace-webhook-template] 
 #  trigger.on-deleted: |
 #    - description: Application is deleted.
 #      oncePer: app.metadata.name
