@@ -25,8 +25,12 @@ data:
         path: /platform/ingest/custom/events.sdlc/argocd
         body: |
             {
-             "type":"DeploySuccess",
-             "app": {{toJson .app}}             
+              "type":"DeploySuccess",
+              "app": {{toJson .app}},
+              "context": {{toJson .context}},
+              "service_type": {{toJson .serviceType}},
+              "recipient": {{toJson .recipient}},
+              "commit_metadata": {{toJson (call .repo.GetCommitMetadata .app.status.operationState.syncResult.revision)}}
             }
   template.app-sync-succeeded: |
     webhook:
@@ -161,7 +165,7 @@ data:
       - app-created
       when: "true"
   trigger.dynatrace-webhook-trigger: |
-    - when: app.status.operationState != nil
+    - when: app.status.operationState.phase in ['Succeeded', 'Failed', 'Error', 'Running'] and app.status.health.status in ['Healthy', 'Degraded']
       oncePer: app.status.operationState.syncResult.revision
       send: [dynatrace-webhook-template]
 #  trigger.on-deleted: |
