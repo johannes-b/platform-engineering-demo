@@ -1,0 +1,14 @@
+configs:
+- id: simplenodeservice-team03-preprod_synthetic
+  config:
+    name: "Healthcheck simplenodeservice-team03-preprod"
+    parameters:
+      baseUrl: "https://expert-space-meme-4497r557x2qj45-80.app.github.dev/simplenodeservice-team03-preprod"
+      frequencyMin: "1"
+      enabled: "true"
+      geoLocation: "GEOLOCATION-0A41430434C388A9"
+      teamIdentifier: "team03"
+    template: health-check-http.json
+    skip: false
+  type:
+    api: synthetic-monitor
