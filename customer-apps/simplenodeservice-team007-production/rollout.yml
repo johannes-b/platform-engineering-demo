@@ -24,13 +24,13 @@ spec:
         dt.owner: "team007"
         app.kubernetes.io/name: userinterface
         app.kubernetes.io/part-of: "simplenodeservice-team007"
-        app.kubernetes.io/version: "1.0.3"
+        app.kubernetes.io/version: "3.0.1"
         dynatrace-release-stage: "production"
         backstage.io/component: "default.simplenodeservice-team007-production"
     spec:
       containers:
       - name: rollouts-demo
-        image: grabnerandi/simplenodeservice:1.0.3
+        image: grabnerandi/simplenodeservice:3.0.1
         env:
         - name: DT_RELEASE_VERSION
           valueFrom:
