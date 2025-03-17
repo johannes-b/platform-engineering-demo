@@ -1,6 +1,6 @@
 ---
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: "simplenodeservice-team007"
   namespace: "simplenodeservice-team007-production"
@@ -8,13 +8,6 @@ metadata:
     dt.owner: "team007"
 spec:
   replicas: 2
-  strategy:
-    canary:
-      steps:
-      - setWeight: 50
-      - pause: {duration: 5s}
-      - setWeight: 100
-  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app.kubernetes.io/name: userinterface
@@ -29,7 +22,7 @@ spec:
         backstage.io/component: "default.simplenodeservice-team007-production"
     spec:
       containers:
-      - name: rollouts-demo
+      - name: carts-service
         image: grabnerandi/simplenodeservice:3.0.1
         env:
         - name: DT_RELEASE_VERSION
