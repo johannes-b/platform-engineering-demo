@@ -17,13 +17,13 @@ spec:
         dt.owner: "team007"
         app.kubernetes.io/name: userinterface
         app.kubernetes.io/part-of: "simplenodeservice-team007"
-        app.kubernetes.io/version: "1.0.1"
+        app.kubernetes.io/version: "1.0.2"
         dynatrace-release-stage: "production"
         backstage.io/component: "default.simplenodeservice-team007-production"
     spec:
       containers:
       - name: carts-service
-        image: grabnerandi/simplenodeservice:1.0.1
+        image: grabnerandi/simplenodeservice:1.0.2
         env:
         - name: DT_RELEASE_VERSION
           valueFrom:
