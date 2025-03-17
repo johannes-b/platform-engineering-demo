@@ -1,0 +1,47 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "simplenodeservice-team007-production"
+  title: "simplenodeservice-team007-production"
+  description: "Template for the simplenodeservice owned and operated by team007 in environment production"
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    # Not working
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=userinterface'
+    'backstage.io/kubernetes-namespace': 'simplenodeservice-team007-production'
+    argocd/app-name: simplenodeservice-team007-production
+  links:
+    - url: https://github.com/johannes-b/platform-engineering-demo.git
+      title: Github Repo
+      icon: github
+    - url: https://verbose-space-acorn-4497r56xg3qqw7-80.app.github.dev/simplenodeservice-team007-production
+      title: "Browse Application"
+      icon: subject
+    - title: View in ArgoCD
+      icon: catalog
+      url: https://verbose-space-acorn-4497r56xg3qqw7-30100.app.github.dev/applications/argocd/simplenodeservice-team007-production
+    - title: View in Dynatrace
+      icon: catalog
+      url: https://mol91935.apps.dynatrace.com
+    - url: https://community.dynatrace.com
+      title: Dynatrace community
+      icon: dashboard
+spec:
+  type: website
+  owner: team007
+  lifecycle: production
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: "team007"
+  description: Group for application team team007
+spec:
+  type: business-unit
+  profile:
+    displayName: Visionary Vanguards
+    email: team01@example.com
+    picture: https://example.com/staff/jenny-with-party-hat.jpeg
+  parent: applications
+  children: []
+#   members: [jdoe]
