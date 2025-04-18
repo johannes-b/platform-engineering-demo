@@ -1,4 +1,4 @@
-# Platform Engineering Codespaces Demo
+# Platform Engineering Codespaces
 
 **Got feedback? We welcome contributions and feedback. Create an issue or email devrel@dynatrace.com**
 
