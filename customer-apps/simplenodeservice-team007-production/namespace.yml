@@ -1,9 +1,0 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: "simplenodeservice-team007-production"
-  labels:
-    dt.owner: "team007"
-  annotations:
-    keptn.sh/lifecycle-toolkit: "not enabled"
