@@ -5,12 +5,12 @@ metadata:
   namespace: argocd
 data:
   service.webhook.dynatrace-webhook: |
-    url: $dt-base-url
+    url: $dynatrace-url
     headers:
-    - name: "Authorization"
-      value: Api-Token $dt-access-token
-    - name: "Content-Type"
-      value: "application/json; charset=utf-8"
+    - name: Authorization
+      value: Api-Token $dynatrace-token
+    - name: Content-Type
+      value: application/json
   template.dynatrace-webhook-template: |
     webhook:
       dynatrace-webhook:
