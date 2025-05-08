@@ -24,6 +24,7 @@ spec:
         notifications.argoproj.io/subscribe.on-sync-failed.dynatrace: ""
         notifications.argoproj.io/subscribe.on-sync-running.dynatrace: ""
         notifications.argoproj.io/subscribe.on-sync-succeeded.dynatrace: ""
+        notifications.argoproj.io/subscribe.dynatrace-webhook-trigger.dynatrace-webhook: ""
     spec:
       project: "default"
       source:
