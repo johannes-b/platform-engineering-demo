@@ -7,9 +7,9 @@ data:
   service.webhook.dynatrace-webhook: |
     url: $dt-base-url
     headers:
-    - name: "Authorization"
+    - name: Authorization
       value: Api-Token $dt-access-token
-    - name: "Content-Type"
+    - name: Content-Type
       value: "application/json; charset=utf-8"
   service.webhook.dynatrace: |
     url: $dynatrace-url
