@@ -11,6 +11,26 @@ data:
       value: Api-Token $dynatrace-token
     - name: Content-Type
       value: application/json
+  service.webhook.dynatrace-webhook: |
+    url: $dt-base-url
+    headers:
+    - name: "Authorization"
+      value: Api-Token $dt-access-token
+    - name: "Content-Type"
+      value: "application/json; charset=utf-8"
+  template.dynatrace-webhook-template: |
+    webhook:
+      dynatrace-webhook:
+        method: POST
+        path: /platform/ingest/custom/events.sdlc/argocd
+        body: |
+            {
+              "app": {{toJson .app}},
+              "context": {{toJson .context}},
+              "service_type": {{toJson .serviceType}},
+              "recipient": {{toJson .recipient}},
+              "commit_metadata": {{toJson (call .repo.GetCommitMetadata .app.status.operationState.syncResult.revision)}}
+            }
   template.app-sync-succeeded: |
     webhook:
       dynatrace:
@@ -182,3 +202,9 @@ data:
       send:
       - app-sync-succeeded
       when: app.status.operationState != nil and app.status.operationState.phase in ['Succeeded']
+  trigger.dynatrace-webhook-trigger: |
+    - when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status in ['Healthy', 'Degraded']
+    - when: app.status.operationState.phase in ['Failed', 'Error']
+      send: [dynatrace-webhook-template]
+    - when: app.status.operationState.phase in ['Running'] 
+      send: [dynatrace-webhook-template]
