@@ -22,6 +22,8 @@ DT_SSO_TOKEN_URL = get_sso_token_url(dt_env=DT_ENV)
 # Create other DT tokens
 DT_ALL_INGEST_TOKEN = create_dt_api_token(token_name="[devrel demo] DT_ALL_INGEST_TOKEN", scopes=[
     "bizevents.ingest",
+    "openpipeline.events_sdlc",
+    "openpipeline.events_sdlc.custom",
     "events.ingest",
     "logs.ingest",
     "metrics.ingest",
