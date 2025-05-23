@@ -1,7 +1,7 @@
 import os
 from utils import *
 
-ARGOCD_VERSION="v2.12.2"
+ARGOCD_VERSION="v2.13.5"
 
 if (
     DT_RW_API_TOKEN is None or
